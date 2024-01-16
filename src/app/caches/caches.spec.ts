@@ -57,7 +57,10 @@ describe('Caching', () => {
             await userCache.store(MOCK_USER_KEY, MOCK_USER as any);
             const entry = await userCache.get(MOCK_USER_KEY);
             expect(entry).toEqual(MOCK_USER);
+        });
 
+        it('should not store a user in cat cache', async () => {
+            await userCache.store(MOCK_USER_KEY, MOCK_USER as any);
             // other caches should not have the entry
             const cat = await catCache.get(MOCK_USER_KEY);
             expect(cat).toBeUndefined();
